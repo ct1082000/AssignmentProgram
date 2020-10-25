@@ -25,13 +25,13 @@ public class BulletinBoardClient{
 
         try{ //open socket and build the connect
             System.out.println("IP address: "+ip+"      Port Number:"+port);
-            socket = new Socket(ip,port); // build the socket
+            socket = new Socket(ip,port); // build the socket and connection
             out = new PrintWriter(socket.getOutputStream(),true); // send input from client to server
             br = new BufferedReader (new InputStreamReader(socket.getInputStream())); // return the input received by server to client
-            System.out.println(socket.isConnected());
+            System.out.println(socket.isConnected()); //return the connection status on a socket
 
-            if(socket.isConnected()){ //return the connection status on a socket
-                System.out.println("Connect status: success"); // print the result if the connection is successful
+            if(socket.isConnected()){ // print the result if the connection is successful
+                System.out.println("Connect status: success"); 
             }else{
                 System.out.println("Connect status: fail");
             }
