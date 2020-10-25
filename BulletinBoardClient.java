@@ -36,9 +36,9 @@ public class BulletinBoardClient{
                 System.out.println("Connect status: fail");
             }
             while(quit == false){
-                cType = sr.nextLine();
+                cType = sr.nextLine(); 
                 System.out.println("client: "+cType);
-                switch(cType){ // switch case to accept the commands
+                switch(cType){ // switch case to accept the command
                     case "POST":
                         postInput="";
                         postInput+=cType+"\n";
@@ -94,7 +94,7 @@ public class BulletinBoardClient{
             while((size=br.read(charArray)) >=0)  //receive server output
             {
                 input = String.valueOf(charArray, 0, size);
-                System.out.println("server: "+input);
+                System.out.println("server: "+input); // print reply message from server against to the input in the client
                 if(input.contains("\0")&& input.contains(".")|| input.contains("ERROR") ||input.contains("\0")&& input.contains("OK")){ //check the message is contain ok and null and error
                     break;
                 }
