@@ -39,19 +39,19 @@ public class BulletinBoardClient{
                 cType = sr.nextLine(); 
                 System.out.println("client: "+cType);
                 switch(cType){ // switch case to accept the command
-                    case "POST":
+                    case "POST": //send inputted message from client to server
                         postInput="";
                         postInput+=cType+"\n";
                         do{
                             input = sr.nextLine();
-                            postInput+=input+"\n";
+                            postInput+=input+"\n"; // store the command, input message
                             System.out.println("client: "+input);
                             if(input.length()==1&&input.contains(".")){ // send the input till there is a '.' in the single line
                                 break;
                             }
                         }
                         while(input.length()>=1); 
-                        out.print(postInput+"\n");
+                        out.print(postInput+"\n"); // send the command and input string to server
                         out.flush(); // reset the output value in the memory
                         receiveServer(size,charArray,input,br); // print the response from the server
                         break;
