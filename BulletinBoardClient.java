@@ -39,12 +39,12 @@ public class BulletinBoardClient{
                 cType = sr.nextLine(); 
                 System.out.println("client: "+cType);
                 switch(cType){ // switch case to accept the command
-                    case "POST": //send inputted message from client to server
+                    case "POST": // POST： send inputted message from client to server
                         postInput="";
                         postInput+=cType+"\n";
                         do{
                             input = sr.nextLine();
-                            postInput+=input+"\n"; // store the command, input message
+                            postInput+=input+"\n"; // store the command, input message into postInput string cumulatively in each loop
                             System.out.println("client: "+input);
                             if(input.length()==1&&input.contains(".")){ // send the input till there is a '.' in the single line
                                 break;
@@ -55,18 +55,18 @@ public class BulletinBoardClient{
                         out.flush(); // reset the output value in the memory
                         receiveServer(size,charArray,input,br); // print the response from the server
                         break;
-                    case "READ":
+			case "READ": // READ: send messages which previously posted by client 
                         out.print(cType+"\n");
                         out.flush();
                         receiveServer(size,charArray,input,br);
                         break;
-                    case "QUIT":
+			case "QUIT": // QUIT: quit the client and close the socket
                         out.print(cType+"\n");
                         out.flush();
                         receiveServer(size,charArray,input,br);
                         quit = true;
                         break;
-                    default:
+                    default: // return the error message if the command is not matched 
                         out.print(cType+"\n");
                         out.flush();
                         receiveServer(size,charArray,input,br);
