@@ -1,0 +1,57 @@
+# Bulletin Board System - Client Side
+
+CS3201 Programming Assignment 
+Student Name: Cho Tsz Yan & Ng Lai Ying
+Student ID: 56345814 & 56273090 
+
+## Description
+This project aims to build the client side of the Bulletin Board System, which performs the text exchange between the client and server. 
+In this project, the server program is provided and its default port number is 16000 running on IP address 192.168.0.1. 
+There are three commands which are POST, READ and QUIT, executed by the client for the communication to the server.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Development Enviornment 
+This program is developed in JAVA languagae under MS Windows with two computers. 
+The IDE of the program is the Visual Studio Code. Besides, Github connected to the IDE is used for the share of code.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Building Process
+In this program, the library 'java.net' is mainly used for the function of the client.
+
+To establish the connection between the client and server, the java class Socket is implemented. 
+After setting the default port number 16000, the Socket is built through accepting the port and inputted ip address. 
+Thus, there is the isconnected() function of the Socket class to return the connection status from the server if the connection is sucessful. 
+If the value is true, the "Connection status: success" is printed, else "Connection status: failed" is printed.
+
+After the connection is established, there is a switch case to accept the inputted command in client. 
+The readable command is "POST", "READ", and "QUIT" which is case sensitive. 
+If one character of the command is small letter, the inputted command is considered as a failed case and cannot be sent to the server. <br />
+
+For "POST":
+There is a do-while loop to let the user input the texts. 
+The program will continue read the user input if the input length is equal or larger than 1. The command is stored in the postInput string. 
+In every loop, the inputted message is stored in the postInput string seperated by "\n" as well. When the users type only one "." in a single line, the program will send all the typed texts which are stored in the postInput before the "." to server.
+ Finally, the command and mesaages posted by client are read by server via the PrintWriter class which is socket.getOutputStream() as the output stream.
+
+For "READ": The command is read by the PrintWriter class which is socket.getOutputStream() as the output stream. 
+And the server sends all the messages posted by client by the function receiveServer(), which will send the char array storing the posted messages and the reponse from server "OK" or ".".
+
+For "QUIT": The command is read by the PrintWriter class which is socket.getOutputStream() as the output stream. 
+And the quit status becomes false and quit the while loop, going to finally{} which contains the function socket.close(). 
+The client program closes.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## How to compile and run
+-->If you only have one computer: 
+1. Download the Visual Studio Code
+2. Start the server program
+3. Use Visual Studio Code to open the BulletinBoardClient.java file
+4. Enter the IP address 127.0.0.1 to connect the server first
+5. If the connection status shows success, three commands can be executed: POST, READ and QUIT
+6. Note that the command must be all in capital letter and not false tolerance. If the command has typing mistake,  there is a error that the server cannot understand the command.
+7. For POST command, after typing the messages, type one "." only in a single line to send them.
+8. For READ command, after typing "READ", the client will recevie the messages posted to server.
+9.For QUIT command, once "QUIT" command is typed, the client program will close.
+
+-->If you run two connected computer:
+1. Download the Visual Studio Code in Computer A.
+2.Start the server program in Computer B.
+3. Repeat the step 3-9 mentioned above. 
+
