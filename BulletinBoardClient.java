@@ -28,9 +28,8 @@ public class BulletinBoardClient{
             socket = new Socket(ip,port); // build the socket and connection
             out = new PrintWriter(socket.getOutputStream(),true); // send input from client to server
             br = new BufferedReader (new InputStreamReader(socket.getInputStream())); // return the input received by server to client
-            System.out.println(socket.isConnected()); //return the connection status on a socket
 
-            if(socket.isConnected()){ // print the result if the connection is successful
+            if(socket.isConnected()){ // //return the connection status on a socket and print the result if the connection is successful
                 System.out.println("Connect status: success"); 
             }else{
                 System.out.println("Connect status: fail");
@@ -91,7 +90,7 @@ public class BulletinBoardClient{
 
     public static void receiveServer(int size, char[] charArray, String input, BufferedReader br){
         try{
-            while((size=br.read(charArray)) >=0)  //receive server output
+            while((size=br.read(charArray)) !=1)  //receive server output
             {
                 input = String.valueOf(charArray, 0, size);
                 System.out.println("server: "+input); // print reply message from server against to the input in the client
