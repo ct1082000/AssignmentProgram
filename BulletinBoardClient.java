@@ -1,7 +1,5 @@
-import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-import javax.swing.*;
 import java.util.*;
 
 public class BulletinBoardClient{
@@ -12,7 +10,7 @@ public class BulletinBoardClient{
         BufferedReader br = null;
         Socket socket = null; // initialize the TCP socket
         String ip;
-        int port = 16000; // set the default value of port (16000)
+        final int port = 16000; // set the default value of port (16000)
         int size = 0;
         Scanner sr = new Scanner(System.in);
         char charArray[] = new char[1024];
@@ -54,12 +52,12 @@ public class BulletinBoardClient{
                         out.flush(); // reset the output value in the memory
                         receiveServer(size,charArray,input,br); // print the response from the server
                         break;
-			case "READ": // READ: send messages which previously posted by client 
+			        case "READ": // READ: send messages which previously posted by client 
                         out.print(cType+"\n");
                         out.flush();
                         receiveServer(size,charArray,input,br);
                         break;
-			case "QUIT": // QUIT: quit the client and close the socket
+			        case "QUIT": // QUIT: quit the client and close the socket
                         out.print(cType+"\n");
                         out.flush();
                         receiveServer(size,charArray,input,br);
@@ -81,6 +79,7 @@ public class BulletinBoardClient{
             try{
                 out.close();
                 br.close();
+                sr.close();
                 socket.close();
             }catch (IOException e) {
                 System.out.println(e);
@@ -90,7 +89,7 @@ public class BulletinBoardClient{
 
     public static void receiveServer(int size, char[] charArray, String input, BufferedReader br){
         try{
-            while((size=br.read(charArray)) !=1)  //receive server output
+            while((size=br.read(charArray))!=-1)  //receive server output
             {
                 input = String.valueOf(charArray, 0, size);
                 System.out.println("server: "+input); // print reply message from server against to the input in the client
