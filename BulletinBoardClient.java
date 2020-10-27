@@ -41,7 +41,7 @@ public class BulletinBoardClient{
                         postInput+=cType+"\n";
                         do{
                             input = sr.nextLine();
-                            postInput+=input+"\n"; // store the command, input message into postInput string cumulatively in each loop
+                            postInput+=input+"\n"; 
                             System.out.println("client: "+input);
                             if(input.length()==1&&input.contains(".")){ // send the input till there is a '.' in the single line
                                 break;
@@ -49,7 +49,7 @@ public class BulletinBoardClient{
                         }
                         while(input.length()>=1); 
                         out.print(postInput+"\n"); // send the command and input string to server
-                        out.flush(); // reset the output value in the memory
+                        out.flush(); 
                         receiveServer(size,charArray,input,br); // print the response from the server
                         break;
 			        case "READ": // READ: send messages which previously posted by client 
