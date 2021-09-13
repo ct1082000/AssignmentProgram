@@ -1,8 +1,6 @@
 # Bulletin Board System - Client Side
 
 CS3201 Programming Assignment <br />
-Student Name: Cho Tsz Yan & Ng Lai Ying <br />
-Student ID: 56345814 & 56273090 <br /><br />
 
 //You must make it clear how to compile and run your code by explaining it in your readme text file. The development environment should also be indicated in this file. //
  
